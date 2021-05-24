@@ -1,7 +1,12 @@
 package com.politaev.model;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
+
+import static java.util.Arrays.stream;
+import static java.util.Objects.requireNonNull;
 
 public class Query {
     private final UUID[] calendarIds;
@@ -15,7 +20,47 @@ public class Query {
                 -> duration
                 -> start
                 -> end
-                -> new Query(calendarIds, duration, start, end);
+                -> {
+            requireValidInput(calendarIds, duration, start, end);
+            return new Query(calendarIds, duration, start, end);
+        };
+    }
+
+    private static void requireValidInput(UUID[] calendarIds, int duration, LocalDateTime start, LocalDateTime end) {
+        requireValidCalendarIds(calendarIds);
+        requirePositiveDuration(duration);
+        requireNonNull(start, "start must not be null");
+        requireNonNull(end, "end must not be null");
+        requireStartBeforeEnd(start, end);
+        requireTimeIntervalLongerThanDuration(duration, start, end);
+    }
+
+    private static void requireValidCalendarIds(UUID[] calendarIds) {
+        requireNonNull(calendarIds, "calendarIds must not be null");
+        if (calendarIds.length == 0) {
+            throw new IllegalArgumentException("calendarIds must not be empty");
+        }
+        if (stream(calendarIds).anyMatch(Objects::isNull)) {
+            throw new IllegalArgumentException("All calendarIds must not be null");
+        }
+    }
+
+    private static void requirePositiveDuration(int duration) {
+        if (duration <= 0) {
+            throw new IllegalArgumentException("duration must be a positive number");
+        }
+    }
+
+    private static void requireStartBeforeEnd(LocalDateTime start, LocalDateTime end) {
+        if (end.isBefore(start)) {
+            throw new IllegalArgumentException("start must be before end");
+        }
+    }
+
+    private static void requireTimeIntervalLongerThanDuration(int duration, LocalDateTime start, LocalDateTime end) {
+        if (Duration.between(start, end).toMinutes() < duration) {
+            throw new IllegalArgumentException("duration must fit into the specified time interval");
+        }
     }
 
     private Query(UUID[] calendarIds, int duration, LocalDateTime start, LocalDateTime end) {

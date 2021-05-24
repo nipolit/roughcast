@@ -1,6 +1,7 @@
 package com.politaev.model;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
@@ -11,20 +12,30 @@ import static java.util.UUID.randomUUID;
 
 public class QueryTest {
 
+    UUID[] calendarIds;
+    int duration;
+    LocalDateTime start;
+    LocalDateTime end;
+    UUID timeslotType;
+
+    @Before
+    public void setUp() {
+        calendarIds = new UUID[]{randomUUID(), randomUUID()};
+        duration = 12;
+        start = LocalDateTime.now();
+        end = start.plusHours(2);
+        timeslotType = randomUUID();
+    }
+
     @Test
     public void testBuildQuery() {
-        var calendarIds = new UUID[]{randomUUID(), randomUUID()};
-        int duration = 12;
-        var start = LocalDateTime.now();
-        var end = start.plusHours(2);
-
         Query query = buildQuery()
                 .withCalendarIds(calendarIds)
                 .withDurationMinutes(duration)
                 .withStart(start)
                 .withEnd(end);
 
-        Assert.assertEquals(calendarIds, query.getCalendarIds());
+        Assert.assertArrayEquals(calendarIds, query.getCalendarIds());
         Assert.assertEquals(duration, query.getDuration());
         Assert.assertEquals(start, query.getStart());
         Assert.assertEquals(end, query.getEnd());
@@ -46,7 +57,7 @@ public class QueryTest {
                 .withEnd(end)
                 .withTimeslotType(timeslotType);
 
-        Assert.assertEquals(calendarIds, query.getCalendarIds());
+        Assert.assertArrayEquals(calendarIds, query.getCalendarIds());
         Assert.assertEquals(duration, query.getDuration());
         Assert.assertEquals(start, query.getStart());
         Assert.assertEquals(end, query.getEnd());
@@ -54,16 +65,38 @@ public class QueryTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testBuildQueryStartAfterEnd() {
-        var calendarIds = new UUID[]{randomUUID(), randomUUID()};
-        int duration = 12;
-        var start = LocalDateTime.now();
-        var end = start.minusHours(2);
+    public void testBuildQueryEmptyCalendarIds() {
+        buildQuery()
+                .withCalendarIds(new UUID[]{})
+                .withDurationMinutes(0)
+                .withStart(start)
+                .withEnd(end);
+    }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testBuildQueryZeroDuration() {
+        buildQuery()
+                .withCalendarIds(calendarIds)
+                .withDurationMinutes(0)
+                .withStart(start)
+                .withEnd(end);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testBuildQueryDurationLongerThanInterval() {
+        buildQuery()
+                .withCalendarIds(calendarIds)
+                .withDurationMinutes(61)
+                .withStart(start)
+                .withEnd(start.plusHours(1));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testBuildQueryStartAfterEnd() {
         buildQuery()
                 .withCalendarIds(calendarIds)
                 .withDurationMinutes(duration)
                 .withStart(start)
-                .withEnd(end);
+                .withEnd(start.minusHours(2));
     }
 }

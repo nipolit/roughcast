@@ -10,6 +10,9 @@ public class Appointment {
     private LocalDateTime end;
     private boolean completed;
 
+    public Appointment() {
+    }
+
     public UUID getId() {
         return id;
     }

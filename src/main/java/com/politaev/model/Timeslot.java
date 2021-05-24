@@ -10,6 +10,9 @@ public class Timeslot {
     private LocalDateTime start;
     private LocalDateTime end;
 
+    public Timeslot() {
+    }
+
     public UUID getId() {
         return id;
     }

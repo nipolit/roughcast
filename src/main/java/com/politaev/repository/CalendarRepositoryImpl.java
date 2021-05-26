@@ -12,9 +12,10 @@ public class CalendarRepositoryImpl implements CalendarRepository {
     private final Set<UUID> knownCalendarIds;
 
     public CalendarRepositoryImpl(List<StoredData> storedDataList) {
-        knownCalendarIds = storedDataList.stream()
+        var timeslotsStream = storedDataList.stream()
                 .map(StoredData::getTimeslots)
-                .flatMap(List::stream)
+                .flatMap(List::stream);
+        knownCalendarIds = timeslotsStream
                 .map(Timeslot::getCalendarId)
                 .collect(Collectors.toSet());
     }

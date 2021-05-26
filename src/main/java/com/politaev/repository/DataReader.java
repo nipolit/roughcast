@@ -29,8 +29,8 @@ public class DataReader {
     }
 
     private URL getResourceURL(String resourceName) {
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL resourceURL = classLoader.getResource(resourceName);
+        var classLoader = getClass().getClassLoader();
+        var resourceURL = classLoader.getResource(resourceName);
         Objects.requireNonNull(resourceURL, "Resource not found");
         return resourceURL;
     }

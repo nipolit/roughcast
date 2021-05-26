@@ -41,7 +41,7 @@ public class Event {
         return type;
     }
 
-    enum EventType {
+    public enum EventType {
         TIMESLOT_START,
         TIMESLOT_END,
         APPOINTMENT_START,

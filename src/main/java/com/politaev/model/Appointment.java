@@ -1,6 +1,7 @@
 package com.politaev.model;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Appointment {
@@ -8,7 +9,6 @@ public class Appointment {
     private UUID calendarId;
     private LocalDateTime start;
     private LocalDateTime end;
-    private boolean completed;
 
     public Appointment() {
     }
@@ -45,11 +45,16 @@ public class Appointment {
         this.end = end;
     }
 
-    public boolean isCompleted() {
-        return completed;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Appointment that = (Appointment) o;
+        return id.equals(that.id) && calendarId.equals(that.calendarId) && start.equals(that.start) && end.equals(that.end);
     }
 
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, calendarId, start, end);
     }
 }

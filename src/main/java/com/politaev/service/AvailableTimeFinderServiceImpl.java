@@ -8,6 +8,7 @@ import com.politaev.repository.TimeslotRepository;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -68,11 +69,14 @@ public class AvailableTimeFinderServiceImpl implements AvailableTimeFinderServic
             } else {
                 if (hasPositive(activeAppointments) || hasZero(activeTimeslots)) {
                     var timeInterval = new TimeInterval(activeAvailabilityIntervalStart, event.getDateTime());
+                    activeAvailabilityIntervalStart = null;
                     availabilityIntervals.add(timeInterval);
                 }
             }
         }
-        return availabilityIntervals;
+        return availabilityIntervals.stream()
+                .filter(Predicate.not(TimeInterval::isZeroLength))
+                .collect(Collectors.toList());
     }
 
     private Map<UUID, Integer> counterMap(UUID[] calendarIds) {

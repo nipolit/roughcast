@@ -16,6 +16,10 @@ public class TimeInterval {
         return Duration.between(start, end).toMinutes() >= durationMinutes;
     }
 
+    public boolean isZeroLength() {
+        return start.equals(end);
+    }
+
     public LocalDateTime getStart() {
         return start;
     }

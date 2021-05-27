@@ -31,8 +31,10 @@ public class TimeslotRepositoryImpl implements TimeslotRepository {
         var startBeforeIntervalEnd = timeslotsByStart.headMap(query.getEnd(), false).values();
         var endAfterIntervalStart = timeslotsByEnd.tailMap(query.getStart(), false).values();
         var endAfterIntervalStartSet = new HashSet<>(endAfterIntervalStart);
+        var requestedCalendars = new HashSet<>(Arrays.asList(query.getCalendarIds()));
         var resultsStream = startBeforeIntervalEnd.stream()
-                .filter(endAfterIntervalStartSet::contains);
+                .filter(endAfterIntervalStartSet::contains)
+                .filter(timeslot -> requestedCalendars.contains(timeslot.getCalendarId()));
         if (query.getTimeslotType() != null) {
             resultsStream = resultsStream.filter(
                     timeslot -> timeslot.getTypeId().equals(query.getTimeslotType())

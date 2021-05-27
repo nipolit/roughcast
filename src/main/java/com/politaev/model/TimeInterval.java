@@ -1,8 +1,10 @@
 package com.politaev.model;
 
+import org.threeten.extra.Interval;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.Objects;
+import java.time.ZoneId;
 
 public class TimeInterval {
     private final LocalDateTime start;
@@ -14,13 +16,11 @@ public class TimeInterval {
     }
 
     public static TimeInterval parse(String timeIntervalString) {
-        Objects.requireNonNull(timeIntervalString);
-        String[] startAndEnd = timeIntervalString.split("/");
-        if (startAndEnd.length != 2) {
-            throw new IllegalArgumentException("Unable to parse the time interval");
-        }
-        var start = LocalDateTime.parse(startAndEnd[0]);
-        var end = LocalDateTime.parse(startAndEnd[1]);
+        var interval = Interval.parse(timeIntervalString);
+        var startInstant = interval.getStart();
+        var endInstant = interval.getEnd();
+        var start = LocalDateTime.ofInstant(startInstant, ZoneId.systemDefault());
+        var end = LocalDateTime.ofInstant(endInstant, ZoneId.systemDefault());
         return new TimeInterval(start, end);
     }
 

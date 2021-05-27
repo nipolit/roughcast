@@ -1,4 +1,4 @@
-package com.politaev.repository;
+package com.politaev.roughcast.repository;
 
 import org.junit.Test;
 

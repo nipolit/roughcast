@@ -1,16 +1,17 @@
-package com.politaev.model;
+package com.politaev.roughcast.model;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Appointment {
+public class Timeslot {
     private UUID id;
     private UUID calendarId;
+    private UUID typeId;
     private LocalDateTime start;
     private LocalDateTime end;
 
-    public Appointment() {
+    public Timeslot() {
     }
 
     public UUID getId() {
@@ -27,6 +28,14 @@ public class Appointment {
 
     public void setCalendarId(UUID calendarId) {
         this.calendarId = calendarId;
+    }
+
+    public UUID getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(UUID typeId) {
+        this.typeId = typeId;
     }
 
     public LocalDateTime getStart() {
@@ -49,12 +58,12 @@ public class Appointment {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Appointment that = (Appointment) o;
-        return id.equals(that.id) && calendarId.equals(that.calendarId) && start.equals(that.start) && end.equals(that.end);
+        Timeslot timeslot = (Timeslot) o;
+        return id.equals(timeslot.id) && calendarId.equals(timeslot.calendarId) && typeId.equals(timeslot.typeId) && start.equals(timeslot.start) && end.equals(timeslot.end);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, calendarId, start, end);
+        return Objects.hash(id, calendarId, typeId, start, end);
     }
 }

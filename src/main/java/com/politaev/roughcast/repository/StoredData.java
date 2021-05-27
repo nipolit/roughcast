@@ -1,7 +1,7 @@
-package com.politaev.repository;
+package com.politaev.roughcast.repository;
 
-import com.politaev.model.Appointment;
-import com.politaev.model.Timeslot;
+import com.politaev.roughcast.model.Appointment;
+import com.politaev.roughcast.model.Timeslot;
 
 import java.util.List;
 

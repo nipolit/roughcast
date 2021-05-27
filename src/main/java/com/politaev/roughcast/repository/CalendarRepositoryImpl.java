@@ -1,6 +1,6 @@
-package com.politaev.repository;
+package com.politaev.roughcast.repository;
 
-import com.politaev.model.Timeslot;
+import com.politaev.roughcast.model.Timeslot;
 
 import java.util.Arrays;
 import java.util.List;

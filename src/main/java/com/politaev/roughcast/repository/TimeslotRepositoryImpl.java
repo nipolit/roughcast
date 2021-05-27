@@ -1,7 +1,7 @@
-package com.politaev.repository;
+package com.politaev.roughcast.repository;
 
-import com.politaev.model.Query;
-import com.politaev.model.Timeslot;
+import com.politaev.roughcast.model.Query;
+import com.politaev.roughcast.model.Timeslot;
 
 import java.time.LocalDateTime;
 import java.util.*;

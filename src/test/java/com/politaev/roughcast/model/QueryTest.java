@@ -1,4 +1,4 @@
-package com.politaev.model;
+package com.politaev.roughcast.model;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static com.politaev.model.Query.buildQuery;
+import static com.politaev.roughcast.model.Query.buildQuery;
 import static java.util.UUID.randomUUID;
 
 public class QueryTest {

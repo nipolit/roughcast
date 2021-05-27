@@ -1,13 +1,13 @@
-package com.politaev;
+package com.politaev.roughcast;
 
-import com.politaev.model.Query;
-import com.politaev.model.TimeInterval;
+import com.politaev.roughcast.model.Query;
+import com.politaev.roughcast.model.TimeInterval;
 import picocli.CommandLine;
 
 import java.util.List;
 import java.util.UUID;
 
-import static com.politaev.controller.ApplicationController.initializeApplicationContextAndCreateController;
+import static com.politaev.roughcast.controller.ApplicationController.initializeApplicationContextAndCreateController;
 
 @CommandLine.Command(
         name = "roughcast",

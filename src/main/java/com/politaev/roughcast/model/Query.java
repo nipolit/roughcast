@@ -1,4 +1,4 @@
-package com.politaev.model;
+package com.politaev.roughcast.model;
 
 import java.time.Duration;
 import java.time.LocalDateTime;

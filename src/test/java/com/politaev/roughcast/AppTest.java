@@ -1,4 +1,4 @@
-package com.politaev;
+package com.politaev.roughcast;
 
 import org.junit.After;
 import org.junit.Before;

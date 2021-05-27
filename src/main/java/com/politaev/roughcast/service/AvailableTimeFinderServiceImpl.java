@@ -1,9 +1,8 @@
-package com.politaev.service;
+package com.politaev.roughcast.service;
 
-import com.politaev.model.*;
-import com.politaev.repository.AppointmentRepository;
-import com.politaev.repository.CalendarRepository;
-import com.politaev.repository.TimeslotRepository;
+import com.politaev.roughcast.model.*;
+import com.politaev.roughcast.repository.AppointmentRepository;
+import com.politaev.roughcast.repository.TimeslotRepository;
 
 import java.time.LocalDateTime;
 import java.util.*;

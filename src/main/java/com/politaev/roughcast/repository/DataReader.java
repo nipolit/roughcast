@@ -1,4 +1,4 @@
-package com.politaev.repository;
+package com.politaev.roughcast.repository;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;

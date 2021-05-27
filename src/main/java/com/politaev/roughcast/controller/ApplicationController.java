@@ -1,10 +1,10 @@
-package com.politaev.controller;
+package com.politaev.roughcast.controller;
 
-import com.politaev.model.Query;
-import com.politaev.model.TimeInterval;
-import com.politaev.repository.*;
-import com.politaev.service.AvailableTimeFinderService;
-import com.politaev.service.AvailableTimeFinderServiceImpl;
+import com.politaev.roughcast.model.Query;
+import com.politaev.roughcast.model.TimeInterval;
+import com.politaev.roughcast.repository.*;
+import com.politaev.roughcast.service.AvailableTimeFinderService;
+import com.politaev.roughcast.service.AvailableTimeFinderServiceImpl;
 
 import java.util.List;
 

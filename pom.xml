@@ -130,7 +130,7 @@
               <archive>
                 <manifest>
                   <mainClass>
-                    com.politaev.App
+                    com.politaev.roughcast.App
                   </mainClass>
                 </manifest>
               </archive>

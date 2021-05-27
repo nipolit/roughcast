@@ -11,7 +11,7 @@ public class DataReaderTest {
     @Test
     public void testReadStoredData() {
         DataReader dataReader = new DataReader();
-        List<StoredData> result = dataReader.readStoredData("calendar_data.json");
+        List<StoredData> result = dataReader.readStoredData("data_reader/calendar_data.json");
         assertEquals(1, result.size());
         assertEquals(1, result.get(0).getAppointments().size());
         assertEquals(1, result.get(0).getTimeslots().size());
@@ -20,7 +20,7 @@ public class DataReaderTest {
     @Test
     public void testReadStoredDataExtraFields() {
         DataReader dataReader = new DataReader();
-        List<StoredData> result = dataReader.readStoredData("calendar_data_extra_fields.json");
+        List<StoredData> result = dataReader.readStoredData("data_reader/calendar_data_extra_fields.json");
         assertEquals(1, result.size());
         assertEquals(1, result.get(0).getAppointments().size());
         assertEquals(1, result.get(0).getTimeslots().size());
@@ -29,7 +29,7 @@ public class DataReaderTest {
     @Test
     public void testReadStoredDataMultipleEntries() {
         DataReader dataReader = new DataReader();
-        List<StoredData> result = dataReader.readStoredData("calendar_data_multiple_entries.json");
+        List<StoredData> result = dataReader.readStoredData("data_reader/calendar_data_multiple_entries.json");
         assertEquals(2, result.size());
         assertEquals(1, result.get(0).getAppointments().size());
         assertEquals(1, result.get(0).getTimeslots().size());

@@ -13,3 +13,7 @@ For more details on usage you can run:
 ```
 java -jar roughcast.jar --help
 ```
+# About
+This application is a simple CLI tool analyzing calendar data for multiple people and suggesting a time slot when they can all meet.
+
+It was done as a test assignment, and I had to do it in a short amount of time. So I was cutting some corners. The code is not fully tested and there may be some bugs.
